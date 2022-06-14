@@ -1,0 +1,49 @@
+body {
+    background-color: #EEF9BF;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+h1 {
+    width: 100vw;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-family: 'Roboto';
+    line-height: 66px;
+    font-size: 56px;
+    color: #75B79E;
+    text-align: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cartaVerde {
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    margin: 17px;
+}
+
+.cartaVerso img {
+    width: 100px;
+    height: 100px;
+    margin: 24px 7px 22px 10px;
+}
+
+.cartaFrente1 img {
+    width: 100px;
+    height: 100px;
+    margin: 24px 7px 22px 10px;
+}
+
+.escondido {
+    display: none;
+}
