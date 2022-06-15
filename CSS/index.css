@@ -23,7 +23,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-.cartaVerde {
+.carta {
     width: 117px;
     height: 146px;
     background-color: #A7E9AF;
@@ -32,13 +32,7 @@ h1 {
     margin: 17px;
 }
 
-.cartaVerso img {
-    width: 100px;
-    height: 100px;
-    margin: 24px 7px 22px 10px;
-}
-
-.cartaFrente1 img {
+.cartaImagem img {
     width: 100px;
     height: 100px;
     margin: 24px 7px 22px 10px;
