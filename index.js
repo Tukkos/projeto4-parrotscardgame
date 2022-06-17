@@ -1,5 +1,5 @@
 let nCartas;
-let cartas = [`pap1`, `pap1`, `pap2`, `pap2`, `pap3`, `pap3`, `pap4`, `pap4`, `pap5`, `pap5`, `pap6`, `pap6`, `pap7`, `pap7`]
+let cartas = [`pap1`, `pap2`, `pap3`, `pap4`, `pap5`, `pap6`, `pap7`]
 comeco();
 
 function comeco() {
@@ -22,7 +22,10 @@ function distribuindoCartas() {
     const board = document.querySelector(`.board`);
     let cartasNoJogo = [];
 
-    for (let i = 0; i < nCartas; i++) {
+    cartas.sort(mix);
+
+    for (let i = 0; i < nCartas / 2; i++) {
+        cartasNoJogo.push(cartas[i]);
         cartasNoJogo.push(cartas[i]);
     }
 
