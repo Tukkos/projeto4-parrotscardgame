@@ -1,11 +1,5 @@
 let nCartas;
-const cartas = [`./Imagens/bobrossparrot.gif`, `./Imagens/bobrossparrot.gif`,
-    `./Imagens/explodyparrot.gif`, `./Imagens/explodyparrot.gif`,
-    `./Imagens/fiestaparrot.gif`, `./Imagens/fiestaparrot.gif`,
-    `./Imagens/metalparrot.gif`, `./Imagens/metalparrot.gif`,
-    `./Imagens/revertitparrot.gif`, `./Imagens/revertitparrot.gif`,
-    `./Imagens/tripletsparrot.gif`, `./Imagens/tripletsparrot.gif`,
-    `./Imagens/unicornparrot.gif`, `./Imagens/unicornparrot.gif`]
+let cartas = [`pap1`, `pap1`, `pap2`, `pap2`, `pap3`, `pap3`, `pap4`, `pap4`, `pap5`, `pap5`, `pap6`, `pap6`, `pap7`, `pap7`]
 comeco();
 
 function comeco() {
@@ -20,21 +14,29 @@ function comeco() {
     }
 }
 
-function distribuindoCartas() {
-    let contador = 0;
-    const board = document.querySelector(`.board`);
+function mix() {
+    return 0.5 - Math.random();
+}
 
-    while (contador < nCartas) {
+function distribuindoCartas() {
+    const board = document.querySelector(`.board`);
+    let cartasNoJogo = [];
+
+    for (let i = 0; i < nCartas; i++) {
+        cartasNoJogo.push(cartas[i]);
+    }
+
+    cartasNoJogo.sort(mix);
+
+    // REVER CONSTRUIÇAO DO HTML!!!!!
+    for (let i = 0; i < nCartas; i++) {
         board.innerHTML += `<div class="carta" onclick="virarCarta(this)">
-    <div class="cartaImagem" onclick="virarCarta()">
-        <img src="./Imagens/front.png" alt="" class="escondido">
-        <img src="${cartas[contador]}" alt="">
-    </div>
-</div>`
-        contador++
+        <div class="cartaFrente"><img src="./Imagens/front.png" alt=""></div>
+        <div class="cartaVerso"><img src="./Imagens/${cartasNoJogo[i]}.gif" alt=""></div>
+    </div>`
     }
 }
 
-function comparador() {
-    return Math.random() - 0.5;
+function virarCarta(elemento) {
+    elemento.classList.add(`vira`);
 }

@@ -26,18 +26,42 @@ h1 {
 .carta {
     width: 117px;
     height: 146px;
+    margin: 17px;
+
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.cartaFrente,
+.cartaVerso {
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
-    margin: 17px;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.8s;
 }
 
-.cartaImagem img {
+.carta img {
     width: 100px;
     height: 100px;
     margin: 24px 7px 22px 10px;
 }
 
-.escondido {
-    display: none;
+.cartaVerso {
+    transform: rotateY(-180deg);
 }
+
+.carta.vira .cartaVerso {
+    transform: rotateY(0);
+}
+
+.carta.vira .cartaFrente {
+    transform: rotateY(180deg);
+}
+
+/* .desvira {
+    transform: rotateY(0deg);
+} */
