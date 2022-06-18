@@ -1,5 +1,8 @@
 let nCartas;
-let cartas = [`pap1`, `pap2`, `pap3`, `pap4`, `pap5`, `pap6`, `pap7`]
+let cartas = [`pap1`, `pap2`, `pap3`, `pap4`, `pap5`, `pap6`, `pap7`];
+let valorCarta1 = [];
+let valorCarta2 = [];
+
 comeco();
 
 function comeco() {
@@ -31,7 +34,6 @@ function distribuindoCartas() {
 
     cartasNoJogo.sort(mix);
 
-    // REVER CONSTRUIÇAO DO HTML!!!!!
     for (let i = 0; i < nCartas; i++) {
         board.innerHTML += `<div class="carta" onclick="virarCarta(this)">
         <div class="cartaFrente"><img src="./Imagens/front.png" alt=""></div>
@@ -41,5 +43,31 @@ function distribuindoCartas() {
 }
 
 function virarCarta(elemento) {
+    let jaTemVirada = document.querySelectorAll(`.vira`);
     elemento.classList.add(`vira`);
+
+    if (jaTemVirada !== null) {
+        let qualCarta = `${document.querySelector(`.vira`).querySelector(`.cartaVerso`).querySelector(`img`)}`;
+        valorCarta1.push(qualCarta);
+        console.log(valorCarta1);
+
+    } else {
+        let qualCarta = `${document.querySelector(`.vira`).querySelector(`.cartaVerso`).querySelector(`img`)}`;
+        valorCarta2.push(qualCarta);
+        console.log(valorCarta2);
+
+        if (valorCarta1 === valorCarta2) {
+            jaTemVirada.classList.add(`naoMexe`);
+            jaTemVirada.classList.remove(`vira`);
+
+        } else {
+            setTimeout(desvirarDuasCartas, 1000)
+        }
+        valorCarta1 = [];
+        valorCarta2 = [];
+    }
+}
+
+function desvirarDuasCartas() {
+    jaTemVirada.classList.remove(`vira`);
 }
