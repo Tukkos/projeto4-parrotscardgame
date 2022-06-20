@@ -2,6 +2,9 @@ let nCartas;
 let cartas = [`pap1`, `pap2`, `pap3`, `pap4`, `pap5`, `pap6`, `pap7`];
 let valorCarta1 = [];
 let valorCarta2 = [];
+let jaVirouTodas;
+let contador = 0;
+let pontos = 0;
 
 comeco();
 
@@ -44,30 +47,64 @@ function distribuindoCartas() {
 
 function virarCarta(elemento) {
     let jaTemVirada = document.querySelectorAll(`.vira`);
-    elemento.classList.add(`vira`);
+    jaVirouTodas = document.querySelectorAll;
 
-    if (jaTemVirada !== null) {
-        let qualCarta = `${document.querySelector(`.vira`).querySelector(`.cartaVerso`).querySelector(`img`)}`;
+    if (elemento.classList.contains('naoMexe')) {
+        return;
+    }
+
+    // Se não existem cartas viradas, a primeira carta ganha a classe para ser virada e tem o nome do gif "pushado" numa array.
+    if (document.querySelector(`.vira`) === null) {
+        elemento.classList.add(`vira`, `naoMexe`);
+        let qualCarta = `${elemento.querySelector(`.cartaVerso`).querySelector(`img`).src}`;
         valorCarta1.push(qualCarta);
         console.log(valorCarta1);
+        contador++;
 
+        // Se ja tem carta viradas, acontece o mesmo com a segunda.
     } else {
-        let qualCarta = `${document.querySelector(`.vira`).querySelector(`.cartaVerso`).querySelector(`img`)}`;
+        elemento.classList.add(`vira`, `naoMexe`);
+        let qualCarta = `${elemento.querySelector(`.cartaVerso`).querySelector(`img`).src}`;
         valorCarta2.push(qualCarta);
         console.log(valorCarta2);
+        contador++;
 
-        if (valorCarta1 === valorCarta2) {
-            jaTemVirada.classList.add(`naoMexe`);
-            jaTemVirada.classList.remove(`vira`);
+        // As duas cartas são comparadas e se tiver certo elas são travadas.
+        if (valorCarta1[0] === valorCarta2[0]) {
 
+            console.log(jaTemVirada);
+            jaTemVirada[0].classList.add(`parou`);
+            jaTemVirada[0].classList.remove(`vira`);
+            elemento.classList.add(`parou`);
+            elemento.classList.remove(`vira`);
+            pontos++;
+            valorCarta1 = [];
+            valorCarta2 = [];
+
+            // Se não são iguais elas são resetadas.
         } else {
-            setTimeout(desvirarDuasCartas, 1000)
+            setTimeout(desvirarDuasCartas, 1000);
         }
-        valorCarta1 = [];
-        valorCarta2 = [];
+    }
+
+    // 
+    if (pontos === nCartas / 2) {
+        setTimeout(finalizarOJogo, 1000);
     }
 }
 
 function desvirarDuasCartas() {
-    jaTemVirada.classList.remove(`vira`);
+    document.querySelector(`.vira`).classList.remove(`vira`, `naoMexe`);
+    document.querySelector(`.vira`).classList.remove(`vira`, `naoMexe`);
+    valorCarta1 = [];
+    valorCarta2 = [];
+}
+
+function finalizarOJogo() {
+    alert(`Você ganhou em ${contador} jogadas`);
+
+    let lsd = prompt(`Você deseja jogar novamente?`)
+    if (lsd === `sim`) {
+        window.location.reload(true);
+    }
 }
